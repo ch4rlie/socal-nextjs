@@ -3,19 +3,79 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Product Gallery */
+.product-gallery {
+  @apply relative flex flex-col-reverse;
+}
+
+.gallery-main {
+  @apply relative aspect-square w-full;
+}
+
+.gallery-main img {
+  @apply h-full w-full object-contain;
+}
+
+.gallery-thumbnails {
+  @apply mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none;
+}
+
+.thumbnail-grid {
+  @apply grid grid-cols-4 gap-6;
+}
+
+.thumbnail-item {
+  @apply relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase hover:bg-gray-50;
+}
+
+.thumbnail-item.selected {
+  @apply ring-2 ring-indigo-500 ring-offset-2;
+}
+
+.thumbnail-item:not(.selected) {
+  @apply ring-1 ring-gray-200;
+}
+
+.thumbnail-image-container {
+  @apply absolute inset-0 overflow-hidden rounded-md;
+}
+
+.thumbnail-image {
+  @apply h-full w-full object-cover object-center;
+}
+
+/* Quantity Selector */
+.quantity-selector {
+  @apply mt-4;
+}
+
+.quantity-label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.quantity-controls {
+  @apply relative mt-1 flex rounded-md shadow-sm;
+}
+
+.quantity-button {
+  @apply relative inline-flex items-center space-x-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
+}
+
+.quantity-input {
+  @apply block w-full rounded-md border-gray-300 pl-7 pr-12 text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm;
+}
+
+/* Add to Cart Button */
+.add-to-cart-button {
+  @apply mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-400;
 }
